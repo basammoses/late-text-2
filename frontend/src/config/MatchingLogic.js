@@ -1,19 +1,29 @@
-// Compare two arrays and return their similarity as a percentage.
-
-
-
-
-function compareArrays(arr1, arr2) {
-  if (arr1.length !== arr2.length) {
-    return 0.0;
-  }
-
-  let matchingElements = 0;
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] === arr2[i]) {
-      matchingElements++;
+function matchUsers(users, interests) {
+  // Create an empty object to store matched users
+  let matches = {};
+  
+  // Loop through each user
+  users.forEach(user => {
+    // Initialize the user's score to 0
+    let score = 0;
+    
+    // Loop through each interest
+    interests.forEach(interest => {
+      // If the user has the same interest, increase their score by 1
+      if (user.interests.includes(interest)) {
+        score += 1;
+      }
+    });
+    
+    // If the user has a score greater than 0, add them to the matches object
+    if (score > 0) {
+      matches[user.name] = score;
     }
-  }
-
-  return (matchingElements / arr1.length) * 100;
+  });
+  
+  // Sort the matches object by score (descending) and return it
+  return Object.entries(matches).sort((a, b) => b[1] - a[1]);
 }
+
+
+
