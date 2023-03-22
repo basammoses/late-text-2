@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "keywords": [
     "mern",
@@ -15,7 +15,6 @@
   "author": "Piyush Agarwal",
   "license": "ISC",
   "dependencies": {
-    "@chakra-ui/react": "^2.5.2",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
