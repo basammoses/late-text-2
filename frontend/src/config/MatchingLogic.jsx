@@ -1,8 +1,4 @@
 
-
-
-
-
 function matchUsers(users, interests) {
   // Create an empty object to store matched users
   let matches = {};
