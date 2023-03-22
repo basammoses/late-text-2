@@ -1,6 +1,6 @@
 import "./App.css";
-import Homepage from './Pages/Homepage'
-
+// import Homepage from './Pages/Homepage'
+import Auth from './components/Authentication/Auth'
 import { Route, Routes } from "react-router-dom";
 import Chatpage from "./Pages/Chatpage";
 import React from "react";
@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Auth />} />
+        {/* <Route path="/home" element={<Homepage />} /> */}
         <Route path="/chats" element={<Chatpage />} />
       </Routes>
     </div>

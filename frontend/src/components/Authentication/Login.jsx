@@ -5,9 +5,11 @@ import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { auth, provider } from "../config/Firebase-config"
+import { signInWithPopup } from "firebase/auth"
+import { useHistory } from "react-router-dom"
 
-const Login = () => {
+export const Login = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
@@ -15,7 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
 
-  const history = useNavigate();
+  const history = useHistory();
 
   const submitHandler = async () => {
     setLoading(true);
@@ -73,6 +75,19 @@ const Login = () => {
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      // do something with the user object
+      localStorage.setItem("userInfo", JSON.stringify(user));
+      setLoading(false);
+      history.push("/chats");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <VStack spacing="10px">
       <FormControl id="email" isRequired>
@@ -120,8 +135,16 @@ const Login = () => {
       >
         Get Guest User Credentials
       </Button>
+      <div className='auth'>
+        <p> Sign in with google to continue</p>
+        <button onClick={signInWithGoogle}>Sign In </button>
+      </div>
+
     </VStack>
   );
-};
+}
 
-export default Login;
+
+
+
+
