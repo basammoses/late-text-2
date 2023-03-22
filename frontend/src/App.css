@@ -72,9 +72,8 @@ ul {
 
 div .css-ovr4t5 {
   background-image: url(https://i.imgur.com/MCUqmpt.jpg);
-  background-position: cover;
-  background-size: cover;
-  /* height: fit-content;
-  width: fit-content; */
-  object-fit: cover;
+
+ 
+  /* aspect-ratio: 16 / 9;
+  height: fit-content; */
 }
