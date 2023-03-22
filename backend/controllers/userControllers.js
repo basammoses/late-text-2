@@ -6,6 +6,29 @@ import { response } from "express";
 //@description     Get or Search all users
 //@route           GET /api/user?search=
 //@access          Public
+
+export const update = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  
+  if (user) {
+    user.intrests = req.body;
+    const updatedUser = await user.save();
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      intrests: updatedUser.intrests,
+      isAdmin: updatedUser.isAdmin,
+      pic: updatedUser.pic,
+      token: generateToken(updatedUser._id),
+    });
+  } else { 
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+
 export const intrestMatch = asyncHandler(async (req, res) => {
 
   const user = await User.find({ _id: { $ne: req.user._id } })
@@ -22,6 +45,7 @@ export const intrestMatch = asyncHandler(async (req, res) => {
   
   
 });
+
 
 
 export const allUsers = asyncHandler(async (req, res) => {
