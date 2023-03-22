@@ -1,21 +1,26 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../config/generateToken.js";
+import { response } from "express";
 
 //@description     Get or Search all users
 //@route           GET /api/user?search=
 //@access          Public
 export const intrestMatch = asyncHandler(async (req, res) => {
+
+  const user = await User.find({ _id: { $ne: req.user._id } })
+
+    
+
+
+  
+
+  
+  res.send(user)
+    
   
   
-  await User.find({ _id: { $ne: req.user._id } }).then((users) => {
-    const user = users.filter((user) => {
-      return user.interests.some((interest) =>
-        req.user.interests.includes(interest)
-      );
-    });
-    res.send(user);
-  });
+  
 });
 
 

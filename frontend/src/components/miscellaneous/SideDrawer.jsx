@@ -82,11 +82,12 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-
-      const { data } = await api.get(`/api/user?search=${search}`, config);
+      const { data } = await api.get(`/api/user/match`, config);
+      // const { data } = await api.get(`/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
+      console.log(data)
     } catch (error) {
       toast({
         title: "Error Occured!",
