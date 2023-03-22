@@ -33,46 +33,49 @@ export default function KinkList() {
 
   return (
     <div className="kinks">
-      <div className="header">
-        <h1>
-          <b>
-            Pick Your Pleasure
-          </b>
-        </h1>
-      </div>
-      <ul>
-        {list.map((item, index) => (
-          <li key={index}>
+      <div className="container">
+        <div className="header">
+          <h1>
+            <b>
+              Pick Your Pleasure
+            </b>
+          </h1>
+        </div>
+        <ul>
+          {list.map((item, index) => (
+            <li key={index}>
 
-            <div className="kinkList">
-              <input
-                type="checkbox"
-                id={index}
-                isChecked={item.checked}
-                onChange={() => handleOnChange(item.name)}
-              />
+              <div className="kinkList">
+                <input
+                  type="checkbox"
+                  id={index}
+                  isChecked={item.checked}
+                  onChange={() => handleOnChange(item.name)}
+                />
 
-              <label htmlFor={index}>
+                <label htmlFor={index}>
 
-                {item.name}
+                  {item.name}
 
-                <br />
-                {item.description}
+                  <br />
+                  {item.description}
 
-                <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit}>
 
-                </form>
+                  </form>
 
-              </label>
-            </div>
-          </li>
+                </label>
 
-        ))}
-      </ul>
-      <div className="btn">
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
-    </div >
+              </div>
+            </li>
+
+          ))}
+        </ul>
+        <div className="btn">
+          <button onClick={handleSubmit}>Submit</button>
+        </div>
+      </div >
+    </div>
   );
 }
 

@@ -3,7 +3,7 @@
 .App {
   min-height: 100vh;
   display: flex;
-  /* background-image: url("./background.png"); */
+  background-image: url("./background.png");
   background-position: center;
   background-size: cover;
   background-color: #555;
@@ -24,7 +24,7 @@
 
 .kinks {
   font-size: 18px;
-  color: white;
+  color: rgb(200, 200, 200);
   background-color: #00000068;
   font-family: 'Bree Serif', serif;
   background-image: url(https://i.imgur.com/XclGk6n.jpg);
@@ -55,7 +55,7 @@ ul {
 .btn {
   text-align: center;
   background-color: #ff0000;
-  border: 3px solid black;
+  border: 1px solid black;
   color: white;
   padding: 10px 12px;
   margin: 0 auto;
@@ -64,4 +64,17 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.438);
+}
+
+div .css-ovr4t5 {
+  background-image: url(https://i.imgur.com/MCUqmpt.jpg);
+  background-position: cover;
+  background-size: cover;
+  /* height: fit-content;
+  width: fit-content; */
+  object-fit: cover;
 }
