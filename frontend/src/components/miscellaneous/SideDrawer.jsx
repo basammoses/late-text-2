@@ -134,10 +134,11 @@ function SideDrawer() {
         d="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="gray"
+        bg="rgba(67, 67, 67, 0.664)"
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
+        borderColor="red"
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
