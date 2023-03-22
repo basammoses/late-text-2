@@ -1,34 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import list from './list.json'
 
 
 export default function KinkList() {
   const [isChecked, setIsChecked] = useState(list);
-  // const [results, setResults] = useState([]);
+  const [results, setResults] = useState([]);
   console.log(isChecked);
   // console.log(results);
 
-  async function handleSubmit(e) {
-    const kinks = isChecked;
-    console.log(kinks)
-    e.preventDefault()
-  }
-
+  
+  
+  const approvedKinks = []
   const handleOnChange = (name) => {
-    const approvedKinks = []
     const updateIsChecked = isChecked.map((item, index) => {
       if (item.name === name) {
-        return { ...item, checked: !item.checked };
-      } if (item.checked === true) {
-        // console.log(item);
-        approvedKinks.push(item);
-        // setResults(approvedKinks);
+        return { ...item, checked: !item.checked }
+      
+      
       }
       return item;
-    });
+    })
+      
+    
+  ;
     setIsChecked(updateIsChecked);
+    console.log(approvedKinks);
+    
+    
+    
   };
+  
+  function handleResults() {
+    isChecked.forEach((item, index) => {
+      if (item.checked === true && approvedKinks.includes(item.name) === false) {
+        approvedKinks.push(item.name);
+      
+      }
+      return approvedKinks;
+      
+    })
+    console.log(approvedKinks);
+        ;
+   
+    
+    
+   
+  }
+ 
+  
 
+
+
+
+  
+  
 
 
   return (
@@ -60,7 +85,7 @@ export default function KinkList() {
                   <br />
                   {item.description}
 
-                  <form onSubmit={handleSubmit}>
+                  <form >
 
                   </form>
 
@@ -72,7 +97,7 @@ export default function KinkList() {
           ))}
         </ul>
         <div className="btn">
-          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleResults}>Submit</button>
         </div>
       </div >
     </div>

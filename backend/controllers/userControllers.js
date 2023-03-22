@@ -5,6 +5,20 @@ import generateToken from "../config/generateToken.js";
 //@description     Get or Search all users
 //@route           GET /api/user?search=
 //@access          Public
+export const intrestMatch = asyncHandler(async (req, res) => {
+  
+  
+  await User.find({ _id: { $ne: req.user._id } }).then((users) => {
+    const user = users.filter((user) => {
+      return user.interests.some((interest) =>
+        req.user.interests.includes(interest)
+      );
+    });
+    res.send(user);
+  });
+});
+
+
 export const allUsers = asyncHandler(async (req, res) => {
   const keyword = req.query.search
     ? {
@@ -14,6 +28,9 @@ export const allUsers = asyncHandler(async (req, res) => {
         ],
       }
     : {};
+  
+  
+  
 
   const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
   res.send(users);
