@@ -1,3 +1,4 @@
+
 import {
   Box,
   Container,
@@ -12,6 +13,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
+import Auth from "../components/Authentication/Auth";
 
 function Homepage() {
   const history = useNavigate();
