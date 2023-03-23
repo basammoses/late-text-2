@@ -41,7 +41,7 @@ const ProfileModal = ({ user, children }) => {
             flexDir="column"
             alignItems="center"
             justifyContent="space-between"
-            
+
           >
             <Image
               borderRadius="full"
@@ -54,15 +54,16 @@ const ProfileModal = ({ user, children }) => {
               fontFamily="Work sans"
             >
               Email: {user.email}
-              
+
             </Text>
             <Text>
-              Intrests: 
-              {user.intrests.map((intrest) => {
+              interests:
+              {/* {!user.interests && <p>no interests</p>} */}
+              
+              {user.interests && user.interests.map((intrest) => {
                 return <p>{intrest}</p>;
 
-              
-                
+
               })}
             </Text>
           </ModalBody>
