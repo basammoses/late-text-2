@@ -76,7 +76,8 @@ const UserListItem = ({ handleFunction, user }) => {
         </Text>
         
          
-        {handleImg()}
+        {user.score}
+    
          
         
         
