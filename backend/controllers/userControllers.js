@@ -56,6 +56,7 @@ export const intrestMatch = asyncHandler(async (req, res) => {
   users.forEach(user => {
     // Initialize the user's score to 0
     let score = 0;
+    const finalMatches = []
 
     // Loop through each interest
     user.interests.forEach(interest => {
@@ -70,15 +71,20 @@ export const intrestMatch = asyncHandler(async (req, res) => {
       
       
       
-      matches[0] = {
+      let matches = {
         name: user.name,
         email: user.email,
         interests: user.interests,
         _id: user._id,
-        pic: user.pic
+        pic: user.pic,
+       score: score
+        
 
       }
+      
+      finalMatches.push(matches)
         
+      res.send(JSON.stringify(finalMatches))
       
 
     }
@@ -100,9 +106,9 @@ export const intrestMatch = asyncHandler(async (req, res) => {
     
 
 
-  console.log( Object.keys(matches).sort((a, b) => b[1] - a[1]))
+  
 
-  res.send(JSON.stringify(matches))
+  
   }  
 catch (error) {
   res.status(400).json({ message: error.message });
