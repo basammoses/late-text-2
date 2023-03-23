@@ -138,7 +138,7 @@ function SideDrawer() {
             <Text
               d={{ base: "none", md: "flex" }}
               px={4}
-            color="rgb(61, 61, 61)">
+            color="rgba(190, 190, 190)">
               Search User
             </Text>
           </Button>
@@ -148,7 +148,7 @@ function SideDrawer() {
           color="white"
           fontWeight="bold"
         >
-          Late-Text
+          Late Text
         </Text>
         <div>
           <Menu>
