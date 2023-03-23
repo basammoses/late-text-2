@@ -3,6 +3,7 @@ import { Box, Text } from "@chakra-ui/layout";
 import { ChatState } from "../../Context/ChatProvider";
 import React from "react";
 
+
 const UserListItem = ({ handleFunction, user }) => {
   // const { user } = ChatState();
   console.log(user.name);
@@ -40,6 +41,20 @@ const UserListItem = ({ handleFunction, user }) => {
           <b>Email : </b>
           {user.email}
         </Text>
+        
+        
+          <img
+            src={'/heart.png'}
+            style={{ width: '20px', height: '20px' }}
+          >
+          
+          
+          
+        </img>
+        
+        
+      
+        
       </Box>
     </Box>
   );
