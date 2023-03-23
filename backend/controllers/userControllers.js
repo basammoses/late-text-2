@@ -33,85 +33,73 @@ export const update = asyncHandler(async (req, res) => {
 
 export const intrestMatch = asyncHandler(async (req, res) => {
   try {
-    const users = await User.find({ _id: { $ne: req.user._id } })
-    const myinterests = req.user;
+    const users = await User.find({ _id: { $ne: req.user._id } });
 
- 
+   
 
-
-
-
-
-
-    let matches = []
-      
-    
-      
-    
-  
-    
-  ;
-
-  // Loop through each user
-  users.forEach(user => {
-    // Initialize the user's score to 0
-    let score = 0;
     const finalMatches = []
+    // Loop through each user
+    users.forEach(user => {
 
-    // Loop through each interest
-    user.interests.forEach(interest => {
-      // If the user has the same interest, increase their score by 1
-      if (req.user.interests.includes(interest)) {
-        score += 1;
+      // Initialize the user's score to 0
+      let score = 0;
+
+
+
+      // Loop through each interest
+      user.interests.forEach(interest => {
+        // If the user has the same interest, increase their score by 1
+        if (req.user.interests.includes(interest)) {
+          score += 1;
+        }
+      });
+
+      // If the user has a score greater than 0, add them to the matches object
+      if (score > 0) {
+
+
+
+        let matches = {
+          name: user.name,
+          email: user.email,
+          interests: user.interests,
+          _id: user._id,
+          pic: user.pic,
+          score: score
+
+
+        }
+        finalMatches.push(matches)
+
+
+
+
       }
-    });
 
-    // If the user has a score greater than 0, add them to the matches object
-    if (score > 0) {
-      
-      
-      
-      let matches = {
-        name: user.name,
-        email: user.email,
-        interests: user.interests,
-        _id: user._id,
-        pic: user.pic,
-       score: score
-        
 
-      }
-      
-      finalMatches.push(matches)
-        
-      res.send(JSON.stringify(finalMatches))
-      
+
+
+
 
     }
 
-    
-  
-      
-      
-      
+    );
+
+    res.send(JSON.stringify(finalMatches))
+
+
+    // Sort the matches object by score (descending) and return it
+
+
+
+
+
+
+
+
   }
-    
-  );
-
-
-
-  // Sort the matches object by score (descending) and return it
-
-  
-    
-
-
-  
-
-  
-  }  
-catch (error) {
-  res.status(400).json({ message: error.message });
+  catch (error) {
+    res.status(400).json({ message: error.message });
 
   }
 });
