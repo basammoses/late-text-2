@@ -146,7 +146,7 @@ function SideDrawer() {
             <Text
               d={{ base: "none", md: "flex" }}
               px={4}
-            color="red">
+            color="rgb(61, 61, 61)">
               Search User
             </Text>
           </Button>
