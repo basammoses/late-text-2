@@ -138,17 +138,24 @@ function SideDrawer() {
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
-        borderColor="red"
+        borderColor=""
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
-            <Text d={{ base: "none", md: "flex" }} px={4}>
+            <Text
+              d={{ base: "none", md: "flex" }}
+              px={4}
+            color="red">
               Search User
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
+        <Text fontSize="48px"
+          fontFamily="Work sans"
+          color="white"
+          fontWeight="bold"
+        >
           Late-Text
         </Text>
         <div>
