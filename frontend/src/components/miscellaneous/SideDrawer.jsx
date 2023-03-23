@@ -63,16 +63,7 @@ function SideDrawer() {
   };
 
   const handleSearch = async () => {
-    if (!search) {
-      toast({
-        title: "Please Enter something in search",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "top-left",
-      });
-      return;
-    }
+    
 
     try {
       setLoading(true);
@@ -82,11 +73,12 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-
-      const { data } = await api.get(`/api/user?search=${search}`, config);
+      const { data } = await api.get(`/api/user/match`, config);
+      // const { data } = await api.get(`/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
+      console.log(data)
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -140,7 +132,7 @@ function SideDrawer() {
         borderWidth="5px"
         borderColor=""
       >
-        <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
+        <Tooltip label="Find your match!" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
             <Text
@@ -204,16 +196,11 @@ function SideDrawer() {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">Match with others</DrawerHeader>
           <DrawerBody>
             <Box d="flex" pb={2}>
-              <Input
-                placeholder="Search by name or email"
-                mr={2}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <Button onClick={handleSearch}>Go</Button>
+              
+              <Button onClick={handleSearch}>MATCH!</Button>
             </Box>
             {loading ? (
               <ChatLoading />
