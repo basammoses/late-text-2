@@ -14,7 +14,12 @@ const userSchema = new mongoose.Schema(
       default:
         "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
-    interests: [],
+    interests: [
+      {
+        type: String,
+        required: false
+      }
+    ],
     isAdmin: {
       type: Boolean,
       required: true,

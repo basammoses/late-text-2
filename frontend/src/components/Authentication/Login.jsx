@@ -61,11 +61,14 @@ const Login = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       console.log(data)
       setLoading(false);
-      if (!data.interests) {
+
+
+      if (data.interests.length === 0) {
         history("/quiz")
       }
-      else { history("/chats") }
-      ;
+      else {
+        history("/chats")
+      }
     } catch (error) {
       toast({
         title: "Error Occured!",
