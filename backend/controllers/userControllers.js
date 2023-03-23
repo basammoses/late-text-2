@@ -189,8 +189,9 @@ export const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       pic: user.pic,
-      token: generateToken(user._id)
-      ,
+      token: generateToken(user._id),
+      intrests: user.intrests,
+      
     });
   } else {
     throw new Error( user)
