@@ -1,0 +1,62 @@
+[
+  {
+    "item": 1,
+    "name": "Bondage",
+    "description": "A type of sexual gratification using the pleasure-pain principle, using ties and restraints",
+    "checked": false
+  },
+  {
+    "item": 2,
+    "name": "Domination",
+    "description": "A person who exercises control, power and influence",
+    "checked": false
+  },
+  {
+    "item": 3,
+    "name": "Exhibitionist",
+    "description": "The idea of doing sexual activities in public areas or infront of others",
+    "checked": false
+  },
+  {
+    "item": 4,
+    "name": "Masochist",
+    "description": "Sexual gratification from being subjected to physical pain or humiliation",
+    "checked": false
+  },
+  {
+    "item": 5,
+    "name": "NonMonogamist",
+    "description": "Having more than one partner, or having one partner but having sex with other people",
+    "checked": false
+  },
+  {
+    "item": 6,
+    "name": "Role Play",
+    "description": "To act out a particular scene or fantasy",
+    "checked": false
+  },
+  {
+    "item": 7,
+    "name": "Sadist",
+    "description": "Infliction of physical or psychologic suffering to stimulate excitement",
+    "checked": false
+  },
+  {
+    "item": 8,
+    "name": "Submission",
+    "description": "Inclined to submit or yield to the authority of another",
+    "checked": false
+  },
+  {
+    "item": 9,
+    "name": "Vanilla",
+    "description": "Noninvolvement of BDSM, kink or fetish activities",
+    "checked": false
+  },
+  {
+    "item": 10,
+    "name": "Voyeur",
+    "description": "Interest in observing unsuspecting people while they undress, are naked, or engage in sexual activities.",
+    "checked": false
+  }
+]

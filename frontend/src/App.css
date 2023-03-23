@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 
 .App {
   min-height: 100vh;
@@ -6,6 +6,7 @@
   background-image: url("./background.png");
   background-position: center;
   background-size: cover;
+  background-color: #555;
 }
 
 ::-webkit-scrollbar {
@@ -18,5 +19,54 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgb(85, 85, 85);
 }
+
+.kinks {
+  font-size: 18px;
+  color: rgb(200, 200, 200);
+  background-color: #00000068;
+  font-family: 'Bree Serif', serif;
+  background-image: url(https://i.imgur.com/XclGk6n.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.kinkList {
+  text-align: center;
+  line-height: 48px;
+}
+
+.header {
+  font-size: 25px;
+  color: rgb(255, 0, 0);
+  text-align: center;
+  line-height: 50px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.name {
+  font-size: 20px;
+}
+
+.btn {
+  text-align: center;
+  background-color: #ff0000;
+  border: 1px solid black;
+  color: white;
+  padding: 10px 12px;
+  margin: 0 auto;
+  cursor: pointer;
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.438);
+}
+

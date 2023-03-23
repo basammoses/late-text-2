@@ -53,6 +53,10 @@ const ProfileModal = ({ user, children }) => {
               fontFamily="Work sans"
             >
               Email: {user.email}
+              
+            </Text>
+            <Text>
+            Intrests: {user.intrests}
             </Text>
           </ModalBody>
           <ModalFooter>
