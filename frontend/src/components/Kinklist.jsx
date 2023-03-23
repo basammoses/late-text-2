@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import list from './list.json'
 import axios from 'axios';
 import { ChatState } from "../Context/ChatProvider";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 const api = axios.create({
   baseURL: `http://localhost:3000`,
@@ -9,8 +11,9 @@ const api = axios.create({
 
 
 export default function KinkList() {
+  const history = useNavigate();
   const [isChecked, setIsChecked] = useState(list);
-  const [results, setResults] = useState([]);
+ 
   console.log(isChecked);
   const { user } = ChatState();
   // console.log(results);
@@ -59,8 +62,10 @@ export default function KinkList() {
         console.log(res);
       }
     )
+    history('/chats');
     
     
+  
 
 
    

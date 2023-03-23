@@ -33,6 +33,12 @@ export const intrestMatch = asyncHandler(async (req, res) => {
 
   const user = await User.find({ _id: { $ne: req.user._id } })
 
+
+  user.map((user) => {
+    user.intrests.map((intrest) => {
+      if (req.user.intrests.includes(intrest)) {
+        
+
     
 
 
