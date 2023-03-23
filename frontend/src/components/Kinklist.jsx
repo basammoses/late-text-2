@@ -63,10 +63,11 @@ export default function KinkList() {
     api.patch('/api/user/update', approvedKinks, config)
       .then((res) => {
         console.log(res);
+        history('/chats');
       }
     )
 
-    history('/chats');
+    
     
     
   

@@ -66,8 +66,8 @@ const Login = () => {
       if (data.interests.length === 0) {
         history("/quiz")
       }
-      else {
-        history("/chats")
+      else{
+        history("/chats") 
       }
     } catch (error) {
       toast({

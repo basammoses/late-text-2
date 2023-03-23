@@ -68,7 +68,7 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await api.get(`/api/user?search=${search}`, config);
+      const { data } = await api.get(`/api/user/match`, config);
       console.log(data);
       setLoading(false);
       setSearchResult(data);
