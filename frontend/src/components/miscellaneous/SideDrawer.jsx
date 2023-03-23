@@ -126,21 +126,29 @@ function SideDrawer() {
         d="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="gray"
+        bg="rgba(67, 67, 67, 0.664)"
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
+        borderColor=""
       >
         <Tooltip label="Find your match!" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
-            <Text d={{ base: "none", md: "flex" }} px={4}>
-              Match with others
+            <Text
+              d={{ base: "none", md: "flex" }}
+              px={4}
+            color="rgba(190, 190, 190)">
+              Search User
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
-          Late-Text
+        <Text fontSize="48px"
+          fontFamily="Work sans"
+          color="white"
+          fontWeight="bold"
+        >
+          Late Text
         </Text>
         <div>
           <Menu>
