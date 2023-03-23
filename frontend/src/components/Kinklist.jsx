@@ -55,9 +55,11 @@ export default function KinkList() {
      const config = { 
        headers: {
          Authorization: `Bearer ${user.token}`,
+         
+        
       },
      };
-    api.put('/api/user/update', approvedKinks, config)
+    api.patch('/api/user/update', approvedKinks, config)
       .then((res) => {
         console.log(res);
       }

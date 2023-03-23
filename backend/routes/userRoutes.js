@@ -9,6 +9,6 @@ router.route("/").get(protect, allUsers);
 router.route("/").post(registerUser);
 router.post("/login", authUser);
 router.route("/match").get(protect, intrestMatch);
-router.route("/update").put(protect, update);
+router.route("/update").patch(protect, update);
 
 export default router;

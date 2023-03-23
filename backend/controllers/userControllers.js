@@ -8,19 +8,21 @@ import { response } from "express";
 //@access          Public
 
 export const update = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
   
+    { $set: { intrests: req.body } },
+    { new: true }
+  );
+  
+  res.send(user);
   if (user) {
-    user.intrests = req.body;
-    const updatedUser = await user.save();
+    
     res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      intrests: updatedUser.intrests,
-      isAdmin: updatedUser.isAdmin,
-      pic: updatedUser.pic,
-      token: generateToken(updatedUser._id),
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      intrests: user.intrests,
     });
   } else { 
     res.status(404);
@@ -30,14 +32,77 @@ export const update = asyncHandler(async (req, res) => {
 
 
 export const intrestMatch = asyncHandler(async (req, res) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.user._id } })
+    const myIntrests = req.user;
 
-  const user = await User.find({ _id: { $ne: req.user._id } })
+    res.send(users)
+    
+    
+    
+ 
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message });
+
+  }
+})
+  
+//   let matches = {};
+  
+//   // Loop through each user
+//   users.forEach(user => {
+//     // Initialize the user's score to 0
+//     let score = 0;
+    
+//     // Loop through each interest
+//     user.interests.forEach(interest => {
+//       // If the user has the same interest, increase their score by 1
+//       if (req.user.interests.includes(interest)) {
+//         score += 1;
+//       }
+//     });
+    
+//     // If the user has a score greater than 0, add them to the matches object
+//     if (score > 0) {
+//       matches[user.name] = score;
+//     }
+//   });
+  
+//   // Sort the matches object by score (descending) and return it
+  
+  
+  
+  
+//   console.log( Object.entries(matches).sort((a, b) => b[1] - a[1]))
+  
+//   res.send( Object.entries(matches).sort((a, b) => b[1] - a[1]))
+//   }  
+// catch (error) {
+//   res.status(400).json({ message: error.message });
+  
+// }
 
 
-  user.map((user) => {
-    user.intrests.map((intrest) => {
-      if (req.user.intrests.includes(intrest)) {
+
+
+
+    
+
+
+
+  //    user.map((user) => {
+  //   user.intrests.map((intrest) => {
+  //     if (req.user.intrests.includes(intrest)) {
         
+  //       return user;
+  //     }
+  //   });
+  // });
+
+
+
+
 
     
 
@@ -45,12 +110,9 @@ export const intrestMatch = asyncHandler(async (req, res) => {
   
 
   
-  res.send(user)
-    
   
   
-  
-});
+
 
 
 
@@ -119,6 +181,7 @@ export const authUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
 
+
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
@@ -126,11 +189,14 @@ export const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       pic: user.pic,
-      token: generateToken(user._id),
+      token: generateToken(user._id)
+      ,
     });
   } else {
-    res.status(401);
-    throw new Error("Invalid Email or Password");
+    throw new Error( user)
+    
+
+    
   }
 });
 
