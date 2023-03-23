@@ -64,14 +64,16 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .container {
   background-color: rgba(0, 0, 0, 0.438);
 }
 
-div.css-z9gl3p{
- border-radius: 5px;
- border-color: #940000;
- color: rgba(190, 190, 190, 0.959);
+div.css-z9gl3p {
+  border-radius: 5px;
+  border-color: #940000;
+  color: rgba(114, 114, 114, 0.959);
 }
+
