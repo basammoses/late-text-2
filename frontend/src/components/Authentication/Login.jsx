@@ -14,7 +14,7 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
- 
+
 
   const history = useNavigate();
 
@@ -61,11 +61,11 @@ const Login = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       console.log(data)
       setLoading(false);
-      if (!data.intrests) {
+      if (!data.interests) {
         history("/quiz")
       }
-      else{history("/chats") }
-   ;
+      else { history("/chats") }
+      ;
     } catch (error) {
       toast({
         title: "Error Occured!",

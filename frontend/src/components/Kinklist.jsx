@@ -38,6 +38,7 @@ export default function KinkList() {
     
     
     
+    
   };
   
   function handleResults() {
@@ -64,6 +65,7 @@ export default function KinkList() {
         console.log(res);
       }
     )
+
     history('/chats');
     
     
