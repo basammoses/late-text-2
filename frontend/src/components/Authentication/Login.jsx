@@ -15,6 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
 
+
   const history = useNavigate();
 
   const submitHandler = async () => {
@@ -58,8 +59,16 @@ const Login = () => {
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
+      console.log(data)
       setLoading(false);
-      history("/chats");
+
+
+      if (data.interests.length === 0) {
+        history("/quiz")
+      }
+      else{
+        history("/chats") 
+      }
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -109,17 +118,7 @@ const Login = () => {
       >
         Login
       </Button>
-      <Button
-        variant="solid"
-        colorScheme="red"
-        width="100%"
-        onClick={() => {
-          setEmail("guest@example.com");
-          setPassword("123456");
-        }}
-      >
-        Get Guest User Credentials
-      </Button>
+      
     </VStack>
   );
 };

@@ -3,9 +3,43 @@ import { Box, Text } from "@chakra-ui/layout";
 import { ChatState } from "../../Context/ChatProvider";
 import React from "react";
 
+
 const UserListItem = ({ handleFunction, user }) => {
   // const { user } = ChatState();
   console.log(user.name);
+   
+
+  
+  function handleImg() {
+    
+    const image = <img src="./heart.png" alt="alt text"
+      style={{
+        
+        width: "20px",
+        height: "20px",
+      }
+        
+      }
+
+    
+    
+       />
+      
+    
+      const imageElements = [];
+    
+      for (let i = 0; i < 5; i++) {
+        imageElements.push(image);
+      }
+    
+      return (
+        <div>
+          {imageElements}
+        </div>
+      );
+    }
+    
+
   
 
 
@@ -40,6 +74,15 @@ const UserListItem = ({ handleFunction, user }) => {
           <b>Email : </b>
           {user.email}
         </Text>
+        
+         
+        {handleImg()}
+         
+        
+        
+        
+      
+        
       </Box>
     </Box>
   );

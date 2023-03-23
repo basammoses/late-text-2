@@ -17,7 +17,10 @@ connectDB();
 
 
 
+
+
 const app = express();
+
 app.use(cors());
 app.use(morgan("dev"));
 
@@ -52,8 +55,8 @@ if (process.env.NODE_ENV === "production") {
 // --------------------------deployment------------------------------
 
 // Error Handling middlewares
-app.use(notFound);
-app.use(errorHandler);
+//  app.use(notFound);
+//  app.use(errorHandler);
 
 const PORT = process.env.PORT;
 

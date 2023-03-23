@@ -63,16 +63,7 @@ function SideDrawer() {
   };
 
   const handleSearch = async () => {
-    if (!search) {
-      toast({
-        title: "Please Enter something in search",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "top-left",
-      });
-      return;
-    }
+    
 
     try {
       setLoading(true);
@@ -82,11 +73,12 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-
-      const { data } = await api.get(`/api/user?search=${search}`, config);
+      const { data } = await api.get(`/api/user/match`, config);
+      // const { data } = await api.get(`/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
+      console.log(data)
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -134,21 +126,29 @@ function SideDrawer() {
         d="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="white"
+        bg="rgba(67, 67, 67, 0.664)"
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
+        borderColor=""
       >
-        <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
+        <Tooltip label="Find your match!" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
-            <Text d={{ base: "none", md: "flex" }} px={4}>
+            <Text
+              d={{ base: "none", md: "flex" }}
+              px={4}
+            color="rgba(190, 190, 190)">
               Search User
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
-          Late-Text
+        <Text fontSize="48px"
+          fontFamily="Work sans"
+          color="white"
+          fontWeight="bold"
+        >
+          Late Text
         </Text>
         <div>
           <Menu>
@@ -196,16 +196,11 @@ function SideDrawer() {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">Match with others</DrawerHeader>
           <DrawerBody>
             <Box d="flex" pb={2}>
-              <Input
-                placeholder="Search by name or email"
-                mr={2}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <Button onClick={handleSearch}>Go</Button>
+              
+              <Button onClick={handleSearch}>MATCH!</Button>
             </Box>
             {loading ? (
               <ChatLoading />

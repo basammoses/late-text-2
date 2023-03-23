@@ -26,7 +26,7 @@ const ProfileModal = ({ user, children }) => {
       )}
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent h="410px">
+        <ModalContent h="550px">
           <ModalHeader
             fontSize="40px"
             fontFamily="Work sans"
@@ -41,18 +41,30 @@ const ProfileModal = ({ user, children }) => {
             flexDir="column"
             alignItems="center"
             justifyContent="space-between"
+
           >
             <Image
               borderRadius="full"
-              boxSize="150px"
+              boxSize="50px"
               src={user.pic}
               alt={user.name}
             />
             <Text
-              fontSize={{ base: "28px", md: "30px" }}
+              fontSize={{ base: "15x", md: "30px" }}
               fontFamily="Work sans"
             >
               Email: {user.email}
+
+            </Text>
+            <Text>
+              interests:
+              {/* {!user.interests && <p>no interests</p>} */}
+              
+              {user.interests && user.interests.map((intrest) => {
+                return <p>{intrest}</p>;
+
+
+              })}
             </Text>
           </ModalBody>
           <ModalFooter>

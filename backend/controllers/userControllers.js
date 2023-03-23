@@ -1,19 +1,154 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../config/generateToken.js";
+import { response } from "express";
 
 //@description     Get or Search all users
 //@route           GET /api/user?search=
 //@access          Public
+
+export const update = asyncHandler(async (req, res) => {
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+
+    { $set: { interests: req.body } },
+    { new: true }
+  );
+
+  res.send(user);
+  if (user) {
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      interests: user.interests,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+
+export const intrestMatch = asyncHandler(async (req, res) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.user._id } });
+
+   
+
+    const finalMatches = []
+    // Loop through each user
+    users.forEach(user => {
+
+      // Initialize the user's score to 0
+      let score = 0;
+
+
+
+      // Loop through each interest
+      user.interests.forEach(interest => {
+        // If the user has the same interest, increase their score by 1
+        if (req.user.interests.includes(interest)) {
+          score += 1;
+        }
+      });
+
+      // If the user has a score greater than 0, add them to the matches object
+      if (score > 0) {
+
+
+
+        let matches = {
+          name: user.name,
+          email: user.email,
+          interests: user.interests,
+          _id: user._id,
+          pic: user.pic,
+          score: score
+
+
+        }
+        finalMatches.push(matches)
+
+
+
+
+      }
+
+
+
+
+
+
+    }
+
+    );
+
+    res.send(JSON.stringify(finalMatches))
+
+
+    // Sort the matches object by score (descending) and return it
+
+
+
+
+
+
+
+
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message });
+
+  }
+});
+
+
+
+
+
+
+
+
+
+//    user.map((user) => {
+//   user.interests.map((intrest) => {
+//     if (req.user.interests.includes(intrest)) {
+
+//       return user;
+//     }
+//   });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const allUsers = asyncHandler(async (req, res) => {
   const keyword = req.query.search
     ? {
-        $or: [
-          { name: { $regex: req.query.search, $options: "i" } },
-          { email: { $regex: req.query.search, $options: "i" } },
-        ],
-      }
+      $or: [
+        { name: { $regex: req.query.search, $options: "i" } },
+        { email: { $regex: req.query.search, $options: "i" } },
+      ],
+    }
     : {};
+
+
+
 
   const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
   res.send(users);
@@ -67,6 +202,7 @@ export const authUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
 
+
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
@@ -75,10 +211,14 @@ export const authUser = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
       pic: user.pic,
       token: generateToken(user._id),
+      interests: user.interests,
+
     });
   } else {
-    res.status(401);
-    throw new Error("Invalid Email or Password");
+    throw new Error(user)
+
+
+
   }
 });
 

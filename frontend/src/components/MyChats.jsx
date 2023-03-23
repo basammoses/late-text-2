@@ -35,6 +35,7 @@ const MyChats = ({ fetchAgain }) => {
 
 
       const { data } = await api.get("/api/chat", config);
+      console.log(data)
       setChats(data);
     } catch (error) {
       toast({
