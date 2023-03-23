@@ -53,7 +53,10 @@ const MyChats = ({ fetchAgain }) => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
     // eslint-disable-next-line
-  }, [fetchAgain]);
+  }, [fetchAgain])
+    
+    
+    ;
 
   return (
     <Box
