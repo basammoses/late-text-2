@@ -5,11 +5,12 @@ import { Box, Text } from "@chakra-ui/layout";
 import "./styles.css";
 import { IconButton, Spinner, useToast } from "@chakra-ui/react";
 import { getSender, getSenderFull } from "../config/ChatLogics";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
+import {AuthContext} from "./Authentication/auth-context.jsx"
 
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
@@ -20,9 +21,12 @@ var socket, selectedChatCompare;
 const api = axios.create(
   {
     baseURL: `http://localhost:3000`,
+    withCredentials: true,
   },
 )
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+  const auth = useContext(AuthContext);
+  const { user, setUser } = auth;
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
@@ -39,7 +43,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  const { selectedChat, setSelectedChat, user, notification, setNotification } =
+  const { selectedChat, setSelectedChat, notification, setNotification } =
     ChatState();
 
   const fetchMessages = async () => {

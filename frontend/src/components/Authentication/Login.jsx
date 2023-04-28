@@ -2,10 +2,11 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import {AuthContext} from "./auth-context"
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -14,6 +15,9 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
+  const auth = useContext(AuthContext);
+  const {user, setUser, token, setToken} = auth;
+ 
 
 
   const history = useNavigate();
@@ -34,6 +38,7 @@ const Login = () => {
 
     const api = axios.create({
       baseURL: "http://localhost:3000",
+      withCredentials: true,
     });
 
     // console.log(email, password);
@@ -58,8 +63,11 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      console.log(data)
+      // localStorage.setItem("userInfo", JSON.stringify(data));
+      setUser(data)
+       
+
+      
       setLoading(false);
 
 
@@ -67,7 +75,7 @@ const Login = () => {
         history("/quiz")
       }
       else{
-        history("/chats") 
+        // history("/chats") 
       }
     } catch (error) {
       toast({
@@ -81,6 +89,10 @@ const Login = () => {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
 
   return (
     <VStack spacing="10px">

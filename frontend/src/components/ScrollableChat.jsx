@@ -8,9 +8,15 @@ import {
 } from "../config/ChatLogics";
 import { ChatState } from "../Context/ChatProvider";
 import React from "react";
+import { useState } from "react";
+import { AuthContext } from "./Authentication/auth-context.jsx"
+import { useContext } from "react";
+import { useEffect } from "react";
 
 const ScrollableChat = ({ messages }) => {
-  const { user } = ChatState();
+
+  const auth = useContext(AuthContext);
+  const { user } = auth
 
   return (
     <>

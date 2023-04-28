@@ -9,6 +9,7 @@ import path from "path";
 import morgan from "morgan";
 import { Server } from "socket.io";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 
 
@@ -22,6 +23,7 @@ connectDB();
 const app = express();
 
 app.use(cors());
+app.use(cookieParser());
 app.use(morgan("dev"));
 
 

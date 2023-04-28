@@ -83,10 +83,13 @@ export const intrestMatch = asyncHandler(async (req, res) => {
 
 
     }
+    
 
     );
 
-    res.send(JSON.stringify(finalMatches))
+    res.send(JSON.stringify(finalMatches.sort(function(a, b) {
+      return b.score - a.score;
+    })))
 
 
     // Sort the matches object by score (descending) and return it
@@ -181,14 +184,18 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      pic: user.pic,
-      token: generateToken(user._id),
+    // res.status(201).json({
+    //   _id: user._id,
+    //   name: user.name,
+    //   email: user.email,
+    //   isAdmin: user.isAdmin,
+    //   pic: user.pic,
+    //   token: generateToken(user._id),
+    // });
+    res.cookie("token", generateToken(user._id), {
+      httpOnly: true,
     });
+    res.json(user)
   } else {
     res.status(400);
     throw new Error("User not found");
@@ -205,16 +212,20 @@ export const authUser = asyncHandler(async (req, res) => {
 
 
   if (user && (await user.matchPassword(password))) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      pic: user.pic,
-      token: generateToken(user._id),
-      interests: user.interests,
+    // res.json({
+    //   _id: user._id,
+    //   name: user.name,
+    //   email: user.email,
+    //   isAdmin: user.isAdmin,
+    //   pic: user.pic,
+    //   token: generateToken(user._id),
+    //   interests: user.interests,
 
+    // });
+    res.cookie("token", generateToken(user._id), {
+      httpOnly: true,
     });
+    res.json(user)
   } else {
     throw new Error(user)
 
@@ -222,4 +233,7 @@ export const authUser = asyncHandler(async (req, res) => {
 
   }
 });
+
+
+
 

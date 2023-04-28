@@ -14,20 +14,25 @@ import {
   Box,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
+import {AuthContext} from "../Authentication/auth-context.jsx"
+
 
 
 
 const api = axios.create(
   {
     baseURL: `http://localhost:3000`,
+    withCredentials: true,
   },
 )
 
 const GroupChatModal = ({ children }) => {
+  const auth = useContext(AuthContext);
+  const { user, setUser } = auth
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [groupChatName, setGroupChatName] = useState();
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -36,7 +41,8 @@ const GroupChatModal = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
 
-  const { user, chats, setChats } = ChatState();
+  const { chats, setChats } = ChatState();
+
 
   const handleGroup = (userToAdd) => {
     if (selectedUsers.includes(userToAdd)) {

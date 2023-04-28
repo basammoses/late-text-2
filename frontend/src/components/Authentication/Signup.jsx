@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 const api = axios.create(
   {
     baseURL: `http://localhost:3000`,
+    withCredentials: true,
   },
 )
 const Signup = () => {

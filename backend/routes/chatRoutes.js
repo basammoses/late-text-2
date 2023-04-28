@@ -2,7 +2,7 @@ import express from "express";
 
 import {accessChat, fetchChats, createGroupChat, removeFromGroup, addToGroup, renameGroup} from "../controllers/chatControllers.js";
 
-import  protect  from "../middleware/authMiddleware.js";
+import { protect }  from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 

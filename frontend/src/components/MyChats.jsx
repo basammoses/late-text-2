@@ -2,39 +2,43 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getSender } from "../config/ChatLogics";
 import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
+import { AuthContext } from "./Authentication/auth-context.jsx"
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
 
-  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+  const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
+  const auth = useContext(AuthContext);
+  const { user, setUser } = auth;
 
   const toast = useToast();
   const api = axios.create(
     {
       baseURL: `http://localhost:3000`,
+      withCredentials: true,
     },
   )
 
   const fetchChats = async () => {
     // console.log(user._id);
     try {
-      const config = {
+      // const config = {
       
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
+      //   headers: {
+      //     Authorization: `Bearer ${user.token}`,
+      //   },
+      // };
 
 
 
 
-      const { data } = await api.get("/api/chat", config);
+      const { data } = await api.get("/api/chat");
       console.log(data)
       setChats(data);
     } catch (error) {
@@ -50,10 +54,14 @@ const MyChats = ({ fetchAgain }) => {
   };
 
   useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
+    
     fetchChats();
     // eslint-disable-next-line
   }, [fetchAgain]);
+  useEffect(() => {
+    setLoggedUser(user);
+    console.log(chats);
+  }, [chats]);
 
   return (
     <Box
@@ -111,6 +119,7 @@ const MyChats = ({ fetchAgain }) => {
                 key={chat._id}
               >
                 <Text>
+                  
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}

@@ -21,7 +21,7 @@ import { Tooltip } from "@chakra-ui/tooltip";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
 import ChatLoading from "../ChatLoading";
@@ -31,14 +31,18 @@ import ProfileModal from "./ProfileModal";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
+import {AuthContext} from "../Authentication/auth-context.jsx"
 
 
 const api = axios.create(
   {
     baseURL: `http://localhost:3000`,
+    withCredentials: true,
   },
 )
 function SideDrawer() {
+  const auth = useContext(AuthContext);
+  const { user, setUser } = auth;
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,7 +50,6 @@ function SideDrawer() {
 
   const {
     setSelectedChat,
-    user,
     notification,
     setNotification,
     chats,
@@ -56,6 +59,9 @@ function SideDrawer() {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const history = useNavigate();
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
@@ -73,7 +79,7 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await api.get(`/api/user/match`, config);
+      const { data } = await api.get(`/api/user/match`);
       // const { data } = await api.get(`/api/user?search=${search}`, config);
 
       setLoading(false);
@@ -102,7 +108,7 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await api.post(`/api/chat`, { userId }, config);
+      const { data } = await api.post(`/api/chat`, { userId });
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
@@ -181,11 +187,14 @@ function SideDrawer() {
                 name={user.name}
                 src={user.pic}
               />
+              {`   ${user.name}`}
             </MenuButton>
             <MenuList>
-              <ProfileModal user={user}>
-                <MenuItem>My Profile</MenuItem>{" "}
-              </ProfileModal>
+              {user && (
+                <ProfileModal user={user}>
+                  <MenuItem>My Profile</MenuItem>{" "}
+                </ProfileModal>)}
+                
               <MenuDivider />
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </MenuList>

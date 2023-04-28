@@ -13,6 +13,8 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
+import { useContext, useState } from "react"
+import { AuthContext } from "../Authentication/auth-context.jsx";
 
 const ProfileModal = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
