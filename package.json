@@ -1,0 +1,22 @@
+{
+  "name": "late-text-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  
+    "scripts": {
+      "heroku-prebuild": "cd frontend && npm install && vite build && cd .. && cd backend && npm install",
+      "start": "cd backend && npm start"
+    },
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basammoses/late-text-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/basammoses/late-text-2/issues"
+  },
+  "homepage": "https://github.com/basammoses/late-text-2#readme"
+}
