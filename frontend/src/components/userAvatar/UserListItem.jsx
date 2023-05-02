@@ -75,8 +75,15 @@ const UserListItem = ({ handleFunction, user }) => {
           {user.email}
         </Text>
         
+      {user.score >= 1 ? "❤️" : ""}
+      {user.score >= 2 ? "❤️" : ""}
+      {user.score >= 4 ? "❤️" : ""}
+      {user.score >= 8 ? "❤️" : ""}
+        {user.score >= 10 ? "❤️" : ""}
+        
+    
          
-        {user.score}
+        
     
          
         

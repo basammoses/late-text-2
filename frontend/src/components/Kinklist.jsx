@@ -4,18 +4,21 @@ import axios from 'axios';
 import { ChatState } from "../Context/ChatProvider";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { AuthContext } from "../components/Authentication/auth-context.jsx";
 
 const api = axios.create({
   baseURL: `http://localhost:3000`,
+  withCredentials: true,
 })
 
 
 export default function KinkList() {
+  const auth = useContext(AuthContext);
   const history = useNavigate();
   const [isChecked, setIsChecked] = useState(list);
  
   console.log(isChecked);
-  const { user } = ChatState();
+  const { user } = auth;
   // console.log(results);
 
   

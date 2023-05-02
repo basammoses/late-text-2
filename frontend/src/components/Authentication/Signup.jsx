@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 const api = axios.create(
   {
     baseURL: `http://localhost:3000`,
+    withCredentials: true,
   },
 )
 const Signup = () => {
@@ -181,7 +182,9 @@ const Signup = () => {
         </InputGroup>
       </FormControl>
       <FormControl id="pic">
-        <FormLabel>Upload your Picture</FormLabel>
+        <FormLabel>
+          
+          Upload a New Picture!</FormLabel>
         <Input
           type="file"
           p={1.5}
