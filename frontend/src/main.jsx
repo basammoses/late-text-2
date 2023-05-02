@@ -14,15 +14,15 @@ import { AuthContextProvider } from "../src/components/Authentication/auth-conte
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <AuthContextProvider>
   <ChakraProvider>
+  <AuthContextProvider>
     <BrowserRouter>
       <ChatProvider>
         <App />
       </ChatProvider>
     </BrowserRouter>
-    </ChakraProvider>,
     </AuthContextProvider>
+    </ChakraProvider>,
  
 );
 
