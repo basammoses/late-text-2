@@ -11,17 +11,17 @@ import axios from "axios";
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
   const auth = useContext(AuthContext);
-  const { user,  setUser } = auth;
+  const { user,  setUser, verifyUser } = auth;
  
-     const verifyUser = () => {
-    axios
-      .get("http://localhost:3000/api/user/verify", { withCredentials: true })
-      .then((res) => {
-        setUser(res.data);
-      });
+    //  const verifyUser = () => {
+    // axios
+    //   .get("http://localhost:3000/api/user/verify", { withCredentials: true })
+    //   .then((res) => {
+    //     setUser(res.data);
+    //   });
 
 
-  }
+  // }
   useEffect(() => {
   
     verifyUser();
@@ -36,7 +36,7 @@ const Chatpage = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      {user && <SideDrawer />}
+      {user && <SideDrawer verifyUser={verifyUser} />}
       <Box d="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
         {user && <MyChats fetchAgain={fetchAgain} />}
         {user && (

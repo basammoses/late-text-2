@@ -40,7 +40,7 @@ const api = axios.create(
     withCredentials: true,
   },
 )
-function SideDrawer() {
+function SideDrawer({verifyUser}) {
   const auth = useContext(AuthContext);
   const { user, setUser } = auth;
   const [search, setSearch] = useState("");

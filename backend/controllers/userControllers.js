@@ -11,7 +11,8 @@ export const update = asyncHandler(async (req, res) => {
   const user = await User.findOneAndUpdate(
     { _id: req.user._id },
 
-    { $set: { interests: req.body } },
+    // { $set: { interests: req.body } },
+    {$set: req.body},
     { new: true }
   );
 
