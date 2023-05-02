@@ -37,7 +37,7 @@ const Login = () => {
     }
 
     const api = axios.create({
-      baseURL: "http://localhost:3000",
+      baseURL: "https://late-text.herokuapp.com",
       withCredentials: true,
     });
 
@@ -75,7 +75,7 @@ const Login = () => {
         history("/quiz")
       }
       else{
-        // history("/chats") 
+         history("/chats") 
       }
     } catch (error) {
       toast({

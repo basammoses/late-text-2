@@ -14,10 +14,10 @@ export const AuthContext = createContext({
 export function AuthContextProvider(props) {
 
     const [user, setUser] = useState({})
-  const [token, setAccessToken] = useState()
+  const [token, setToken] = useState()
   const verifyUser = () => {
     axios
-      .get("http://localhost:3000/api/user/verify", { withCredentials: true })
+      .get("https://late-text.herokuapp.com/api/user/verify", { withCredentials: true })
       .then((res) => {
         setUser(res.data);
       });
@@ -29,7 +29,7 @@ export function AuthContextProvider(props) {
 
     return <AuthContext.Provider value={{
       user, setUser,
-      token, setAccessToken,
+      token, setToken,
       verifyUser
         
     }}>

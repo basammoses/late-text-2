@@ -195,6 +195,10 @@ export const registerUser = asyncHandler(async (req, res) => {
     // });
     res.cookie("token", generateToken(user._id), {
       httpOnly: true,
+      sameSite: "none",
+      secure: true,
+
+      
     });
     res.json(user)
   } else {
@@ -225,6 +229,8 @@ export const authUser = asyncHandler(async (req, res) => {
     // });
     res.cookie("token", generateToken(user._id), {
       httpOnly: true,
+      sameSite: "none",
+      secure: true,
     });
     res.json(user)
   } else {
