@@ -17,7 +17,7 @@ export function AuthContextProvider(props) {
   const [token, setAccessToken] = useState()
   const verifyUser = () => {
     axios
-      .get("http://localhost:3000/api/user/verify", { withCredentials: true })
+      .get("https://late-text.herokuapp.com", { withCredentials: true })
       .then((res) => {
         setUser(res.data);
       });

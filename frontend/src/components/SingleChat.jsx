@@ -15,12 +15,12 @@ import {AuthContext} from "./Authentication/auth-context.jsx"
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "http://localhost:3000"; // "https://Late-Text.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://late-text.herokuapp.com"; // "https://Late-Text.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 const api = axios.create(
   {
-    baseURL: `http://localhost:3000`,
+    baseURL: `https://late-text.herokuapp.com`,
     withCredentials: true,
   },
 )

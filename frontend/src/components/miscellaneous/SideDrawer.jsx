@@ -36,7 +36,7 @@ import {AuthContext} from "../Authentication/auth-context.jsx"
 
 const api = axios.create(
   {
-    baseURL: `http://localhost:3000`,
+    baseURL: `https://late-text.herokuapp.com`,
     withCredentials: true,
   },
 )
